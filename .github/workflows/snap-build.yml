@@ -1,0 +1,21 @@
+name: Build Snap Package for RPI4
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+  
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:  # Allow manual triggering
+
+# Copyright 2024 Canonical Ltd.
+# See LICENSE file for licensing details.
+jobs:
+  build:
+    name: Build snap
+    uses: canonical/data-platform-workflows/.github/workflows/build_snap.yaml@v32.1.0
